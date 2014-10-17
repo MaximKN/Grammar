@@ -9,8 +9,8 @@ public class LogicalExpression extends Expression {
      * @param expression expression
      */
     public void split(String expression){
-        if (isNumOfOccEven("&".charAt(0), expression) && isNumOfOccEven("|".charAt(0), expression)){
-            String[] parts = expression.split("([&|=<>!()])");
+        if (isNumOfOccTwo("&".charAt(0), expression) && isNumOfOccTwo("|".charAt(0), expression) && isNumOfOccTwo("=".charAt(0), expression)){
+            String[] parts = expression.split("([&|=<>()])");
             for (String part : parts) {
                 variable.isLegalVariable(part);
             }
@@ -26,12 +26,12 @@ public class LogicalExpression extends Expression {
      * @param string string
      * @return is even; false otherwise
      */
-    public boolean isNumOfOccEven(char ch, String string){
+    public boolean isNumOfOccTwo(char ch, String string){
         int charCount = 0;
         for (int i = 0; i < string.length(); i++){
             if (ch == string.charAt( i ))
                 charCount++;
         }
-        return charCount % 2 == 0;
+        return charCount == 2;
     }
 }
